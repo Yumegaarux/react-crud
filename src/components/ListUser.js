@@ -11,7 +11,7 @@ function ListUser() {
 
 
     function getUsers(){
-        axios.get('http://localhost/reactCrud/react-crud/api/user/list').then(function(response){
+        axios.get('http://localhost/reactCrud/react-crud/api/user').then(function(response){
             setUsers(response.data);
         });
     }
