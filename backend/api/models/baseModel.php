@@ -1,5 +1,5 @@
 <?php
-    namespace myProject\backend\baseModel;
+    namespace myProject\backend\models;
 
     use myProject\backend\database\Database;
     use PDO;

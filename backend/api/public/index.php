@@ -1,9 +1,20 @@
 <?php
+    header("Access-Control-Allow-Origin: http://localhost:3000");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    header("Content-Type: application/json");
+
+    if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        http_response_code(200);
+        exit(0);
+    }
+
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Headers: *");
 
+    require_once __DIR__ . '/../../../vendor/autoload.php';
+
+    use myProject\backend\models\User;
 
     $user = file_get_contents('php://input');
 
@@ -16,7 +27,7 @@
 
         // dirname removes filename and retains only the directories.
 
-        $scriptName = '/reactCrud/react-crud/api';
+        $scriptName = dirname($_SERVER['SCRIPT_NAME']);;
         echo "</br>scriptName: ", $scriptName;
         // Checks if $requestUri and $scriptName are the same,
         // Checks starting position 0, it returns 0 meaning it found $scriptName inside the first sentence of,
@@ -47,10 +58,15 @@
     $endpoint = getEndpoint();
     $method = $_SERVER['REQUEST_METHOD'];
 
+    echo $endpoint['endpoint'];
+    echo $endpoint['id'];
+    echo $endpoint['action'];
+
     try{
-        switch($endpoint){
+        switch($endpoint['endpoint']){
             case 'user':
                 handleUsers($method);
+                break;
             case "POST":
 
         }
@@ -62,36 +78,23 @@
         ]);
     }
 
-    use myProject\backend\models\baseModel;
-                
-
-    function handleUsers($method) {   
+    function handleUsers($method) {
+        $userModel = new User();
+ 
         switch ($method){
-            case 'GET':
+            case 'GET':        
+                $user = $userModel->findAll();
+                echo json_encode($user);
+                break;
         }            
+
+            try {
+        $user = new User();
+    echo "✅ User class loaded successfully!";
+} catch (Throwable $e) {
+    echo "❌ Error: " . $e->getMessage();
+}
+
     }
 
 
-    
-    // $sql = "SELECT * FROM users";
-    // $stmt = $conn->prepare($sql);
-    // $stmt->execute();
-    // $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // echo json_encode($users);
-    // break;
-
-
-    // $user = json_decode(file_get_contents('php://input')); 
-
-                // $sql = "INSERT INTO users(fname, lname, mobilenum) VALUES(:fname, :lname, :mobilenum)";
-                // $stmt = $conn->prepare($sql);
-                // $stmt->bindParam(':fname', $user->fname);
-                // $stmt->bindParam(':lname', $user->lname);
-                // $stmt->bindParam(':mobilenum', $user->mobilenum);
-
-                // if($stmt->execute()) {
-                //     $response = ['status' => 1, 'message' => 'Record Created Successfully'];
-                // } else {
-                //     $response = ['status' => 0, 'message' => 'Record Created Successfully'];
-                // }
-                // break;

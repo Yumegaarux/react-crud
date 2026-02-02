@@ -15,7 +15,7 @@
 
 		private function __construct()
 		{
-			$this->config = require __DIR__ . '/../database.php';
+			$this->config = require __DIR__ . '/../config/database.php';
 			$this->connect();
 		}
 
