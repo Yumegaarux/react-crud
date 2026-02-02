@@ -88,13 +88,6 @@
                 break;
         }            
 
-            try {
-        $user = new User();
-    echo "✅ User class loaded successfully!";
-} catch (Throwable $e) {
-    echo "❌ Error: " . $e->getMessage();
-}
-
     }
 
 
