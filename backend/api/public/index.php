@@ -95,6 +95,25 @@ function handleUsers($method, $id = null) {
                 echo json_encode(['error' => 'Invalid data provided']);
             }
             break;
+        case 'PUT':
+            if (!$id) {
+                http_response_code(400);
+                echo json_encode(['error' => 'User ID is required']);
+                return;
+            }
+
+            try {
+                $affected = $userModel->update($id, $data);
+                echo json_encode([
+                    'status' => 'success',
+                    'message' => 'User updated successfully',
+                    'affected_rows' => $affected
+                ]);
+            } catch (Exception $e) {
+                http_response_code(400);
+                echo json_encode(['error' => $e->getMessage()]);
+            }
+            break;
         default:
             http_response_code(405);
             echo json_encode(['error' => 'Method not allowed']);

@@ -17,8 +17,6 @@ function App() {
             <li>
               <Link to="user/create">Create User</Link>
             </li>
-            <li>
-            </li>
           </ul>
         </nav>
 

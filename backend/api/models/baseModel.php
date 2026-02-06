@@ -63,6 +63,22 @@
             $query = "INSERT INTO {$this->table} (" . implode(', ', $fields) . ") VALUES (" . implode(',', $placeholders) . ")";
 
             return $this->db->insert($query, $data);
-        }          
+        }
+        
+        public function update($id, array $data): int 
+        {
+            $fields = array_keys($data);
+            $setClause = array_map(function ($field) { return " = :{$field}";}, $fields);
+
+            $query = "UPDATE {$this->table} SET (". implode(', ', $fields) . ") WHERE {$this->primaryKey} = :id";
+
+            return $this->db->execute($query, ['id' => $id]);
+        }
+
+        public function delete($id): int
+        {
+            $query = "DELETE FROM {$this->table} WHERE {$this->primaryKey} = :id";
+            return $this->db->execute($query, ['id' => $id]);
+        }
     }
 ?>
