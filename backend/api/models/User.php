@@ -4,6 +4,8 @@
     class User extends baseModel{
         protected $table = 'users';   
         protected $primaryKey = 'id';
+
+        
     }
 
 ?>

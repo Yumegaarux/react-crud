@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "myProject\\backend\\models\\": "backend/models/"
+            "myProject\\backend\\models\\": "backend/api/models/",
+            "myProject\\backend\\database\\": "backend/api/database/"
         }
     }
 }

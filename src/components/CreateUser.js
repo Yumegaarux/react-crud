@@ -11,7 +11,7 @@ function CreateUser() {
         event.preventDefault();
         console.log(inputs);
 
-        axios.post('http://localhost/reactCrud/react-crud/api/user/save', inputs).then(function(response){
+        axios.post('http://localhost/reactCrud/react-crud/backend/api/public/user', inputs).then(function(response){
             console.log(response.data);
             navigate('/')
         });

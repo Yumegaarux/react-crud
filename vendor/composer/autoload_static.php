@@ -10,13 +10,18 @@ class ComposerStaticInitc8ccef47c7d41f6dfe5d623bcc1ba0dd
         'm' =>
         array (
             'myProject\\backend\\models\\' => 25,
+            'myProject\\backend\\database\\' => 27,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
         'myProject\\backend\\models\\' =>
         array (
-            0 => __DIR__ . '/../..' . '/backend/models',
+            0 => __DIR__ . '/../..' . '/backend/api/models',
+        ),
+        'myProject\\backend\\database\\' =>
+        array (
+            0 => __DIR__ . '/../..' . '/backend/api/database',
         ),
     );
 
